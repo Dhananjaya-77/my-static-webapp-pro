@@ -3,88 +3,744 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Pasindu Perera | Cloud Computing Project</title>
+        <title>Pasindu Perera | Cloud Computing & Web Portfolio</title>
+        <meta name="description" content="Portfolio and cloud computing showcase by Pasindu Perera featuring Azure Static Web Apps, live telemetry, cloud lab calculator, interactive terminal, and projects.">
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
+        <!-- Scroll Progress Indicator -->
+        <div id="scrollProgress" class="scroll-progress" aria-hidden="true"></div>
+
         <header class="site-header">
-            <h1>Pasindu Perera</h1>
-            <nav>
+            <div class="brand">
+                <div class="brand-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>
+                    </svg>
+                </div>
+                <div>
+                    <h1>Pasindu Perera</h1>
+                    <span class="brand-subtitle">Diploma in Cloud Computing</span>
+                </div>
+            </div>
+
+            <button id="mobileNavToggle" class="mobile-nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav id="siteNav">
                 <a href="#home">Home</a>
+                <a href="#telemetry">Telemetry</a>
                 <a href="#about">About</a>
-                <a href="#features">Features</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+                <a href="#cloud-lab">Cloud Lab</a>
+                <a href="#terminal">Cloud Shell</a>
+                <a href="#quiz">Quiz</a>
                 <a href="#contact">Contact</a>
             </nav>
+
+            <div class="header-actions">
+                <button id="themeToggle" class="theme-toggle-btn" title="Toggle color theme" aria-label="Toggle dark/light theme">
+                    <span id="themeIcon" aria-hidden="true">🌙</span>
+                </button>
+            </div>
         </header>
 
         <main>
+            <!-- Hero Section -->
             <section id="home" class="hero">
                 <div class="hero-copy">
+                    <div class="status-pill">
+                        <span class="status-dot"></span>
+                        <span>Azure Static Web Apps • Active Deployment</span>
+                    </div>
                     <p class="eyebrow">Diploma Cloud Computing Project</p>
                     <h2>Building cloud-ready ideas with a modern static web experience.</h2>
                     <p>
-                        This portfolio-style page showcases my learning journey in Azure, GitHub,
-                        and web development while staying lightweight and fast.
+                        This portfolio-style page showcases my learning journey in Microsoft Azure,
+                        GitHub Actions CI/CD workflows, and modern web engineering while staying lightweight,
+                        interactive, and blazing fast.
                     </p>
 
                     <div class="button-row">
                         <button id="dateBtn">Show Date</button>
                         <button id="timeBtn" class="secondary-btn">Show Time</button>
-                        <button id="themeToggle" class="ghost-btn">Toggle Theme</button>
+                        <button id="liveClockToggle" class="ghost-btn">⏱️ Auto Clock: ON</button>
+                        <a href="#projects" class="primary-action-link">Explore Projects →</a>
                     </div>
 
                     <div class="output-row">
                         <span id="dateOutput" class="output"></span>
                         <span id="timeOutput" class="output"></span>
+                        <span id="utcOutput" class="output utc-pill">UTC Cloud Time: --:--:--</span>
                     </div>
                 </div>
 
                 <aside class="profile-card">
-                    <h3>Quick Snapshot</h3>
+                    <div class="profile-card-header">
+                        <div class="avatar-badge">PP</div>
+                        <div>
+                            <h3>Quick Snapshot</h3>
+                            <span class="tag-status">Diploma Candidate</span>
+                        </div>
+                    </div>
                     <ul>
-                        <li><strong>Focus:</strong> Cloud Computing</li>
-                        <li><strong>Tools:</strong> Azure, GitHub, HTML/CSS/JS</li>
-                        <li><strong>Status:</strong> Learning &amp; Building</li>
+                        <li><strong>Specialization:</strong> Cloud Computing &amp; Architecture</li>
+                        <li><strong>Cloud Platform:</strong> Microsoft Azure (Static Web Apps, VMs, Storage)</li>
+                        <li><strong>DevOps &amp; Tools:</strong> GitHub Actions, CI/CD, Git, Linux CLI</li>
+                        <li><strong>Web Stack:</strong> Modern Semantic HTML, Responsive CSS, ES6+ JS</li>
+                        <li><strong>System SLA:</strong> 99.98% High Availability Target</li>
                     </ul>
+                    <div class="profile-card-footer">
+                        <a href="#contact" class="btn-sm">Get In Touch</a>
+                        <a href="#cloud-lab" class="btn-sm secondary">Cloud Lab</a>
+                    </div>
                 </aside>
             </section>
 
-            <section id="about" class="info-section">
-                <h3>About Me</h3>
-                <p>
-                    I am a student exploring the world of cloud technology, digital projects,
-                    and modern web design. I enjoy turning concepts into practical, user-friendly
-                    experiences that are easy to understand and use.
-                </p>
+            <!-- Live Telemetry & Latency Section -->
+            <section id="telemetry" class="telemetry-section">
+                <div class="section-heading">
+                    <span class="eyebrow">Live Monitoring</span>
+                    <h3>Cloud Telemetry &amp; Azure Latency Monitor</h3>
+                    <p>Simulating real-time Application Insights metrics and network ping to major Azure global datacenters.</p>
+                </div>
+
+                <div class="telemetry-grid">
+                    <div class="telemetry-card">
+                        <div class="metric-icon">🚀</div>
+                        <div class="metric-data">
+                            <span class="metric-label">App Health &amp; SLA</span>
+                            <span class="metric-value text-accent">99.99% Operational</span>
+                            <span class="metric-sub">HTTP 200 • TLS 1.3 Secure</span>
+                        </div>
+                    </div>
+                    <div class="telemetry-card">
+                        <div class="metric-icon">👥</div>
+                        <div class="metric-data">
+                            <span class="metric-label">Visitor Sessions</span>
+                            <span id="visitorCount" class="metric-value">Loading...</span>
+                            <span class="metric-sub">Local session telemetry</span>
+                        </div>
+                    </div>
+                    <div class="telemetry-card">
+                        <div class="metric-icon">⚡</div>
+                        <div class="metric-data">
+                            <span class="metric-label">Client Render Time</span>
+                            <span id="pageLoadSpeed" class="metric-value">-- ms</span>
+                            <span class="metric-sub">DOM Ready Performance</span>
+                        </div>
+                    </div>
+                    <div class="telemetry-card">
+                        <div class="metric-icon">☁️</div>
+                        <div class="metric-data">
+                            <span class="metric-label">Host Architecture</span>
+                            <span class="metric-value">Azure Edge CDN</span>
+                            <span class="metric-sub">Global Anycast Distribution</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="latency-dashboard">
+                    <div class="latency-header">
+                        <h4>Azure Region Latency Simulator</h4>
+                        <button id="pingTestBtn" class="secondary-btn btn-sm">⚡ Run Latency Test</button>
+                    </div>
+                    <div class="latency-grid">
+                        <div class="latency-card" data-region="eastus">
+                            <div class="latency-top">
+                                <strong>East US (Virginia)</strong>
+                                <span class="latency-badge" id="ping-eastus">Testing...</span>
+                            </div>
+                            <div class="progress-bar-bg">
+                                <div class="progress-bar-fill" id="bar-eastus" style="width: 35%"></div>
+                            </div>
+                        </div>
+                        <div class="latency-card" data-region="westeurope">
+                            <div class="latency-top">
+                                <strong>West Europe (Amsterdam)</strong>
+                                <span class="latency-badge" id="ping-westeurope">Testing...</span>
+                            </div>
+                            <div class="progress-bar-bg">
+                                <div class="progress-bar-fill" id="bar-westeurope" style="width: 48%"></div>
+                            </div>
+                        </div>
+                        <div class="latency-card" data-region="southeastasia">
+                            <div class="latency-top">
+                                <strong>Southeast Asia (Singapore)</strong>
+                                <span class="latency-badge" id="ping-southeastasia">Testing...</span>
+                            </div>
+                            <div class="progress-bar-bg">
+                                <div class="progress-bar-fill" id="bar-southeastasia" style="width: 22%"></div>
+                            </div>
+                        </div>
+                        <div class="latency-card" data-region="centralindia">
+                            <div class="latency-top">
+                                <strong>Central India (Pune)</strong>
+                                <span class="latency-badge" id="ping-centralindia">Testing...</span>
+                            </div>
+                            <div class="progress-bar-bg">
+                                <div class="progress-bar-fill" id="bar-centralindia" style="width: 28%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </section>
 
+            <!-- About Section -->
+            <section id="about" class="info-section">
+                <div class="section-heading">
+                    <span class="eyebrow">Background &amp; Motivation</span>
+                    <h3>About Me</h3>
+                </div>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>
+                            Hello! I am Pasindu Perera, a technology enthusiast enrolled in the <strong>Diploma in Cloud Computing</strong>.
+                            My passion lies at the intersection of scalable cloud infrastructure, modern software engineering, and seamless user experiences.
+                        </p>
+                        <p>
+                            Throughout my diploma coursework, I have gained hands-on experience designing, deploying, and managing static and dynamic services
+                            using Microsoft Azure, automating continuous integration and continuous deployment (CI/CD) pipelines with GitHub Actions,
+                            and creating responsive web interfaces using semantic standards.
+                        </p>
+                        <div class="about-highlights">
+                            <div class="highlight-item">
+                                <span class="highlight-num">10+</span>
+                                <span class="highlight-desc">Cloud Labs Completed</span>
+                            </div>
+                            <div class="highlight-item">
+                                <span class="highlight-num">100%</span>
+                                <span class="highlight-desc">Automated CI/CD Deployments</span>
+                            </div>
+                            <div class="highlight-item">
+                                <span class="highlight-num">3+</span>
+                                <span class="highlight-desc">Architectural Case Studies</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-milestones">
+                        <h4>Academic &amp; Project Milestones</h4>
+                        <ul class="timeline">
+                            <li>
+                                <span class="timeline-date">Phase 1</span>
+                                <strong>Cloud Computing Fundamentals</strong>
+                                <p>Azure Architecture, IaaS/PaaS/SaaS paradigms, Virtual Networks, Resource Groups.</p>
+                            </li>
+                            <li>
+                                <span class="timeline-date">Phase 2</span>
+                                <strong>DevOps &amp; Automation</strong>
+                                <p>Version control with Git, GitHub Actions deployment workflows, YAML pipelines.</p>
+                            </li>
+                            <li>
+                                <span class="timeline-date">Phase 3</span>
+                                <strong>Static Web Architecture</strong>
+                                <p>Custom domains, SSL certificates, Global Edge CDNs, and serverless backends.</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Features / Core Competencies Section -->
             <section id="features" class="card-grid">
                 <article class="info-card">
+                    <div class="card-icon">☁️</div>
                     <h4>Cloud Learning</h4>
-                    <p>Exploring Azure services, workflows, and deployment practices through real lab-based projects.</p>
+                    <p>Exploring Azure services, workflows, and deployment practices through real lab-based projects and resource management.</p>
                 </article>
                 <article class="info-card">
+                    <div class="card-icon">💻</div>
                     <h4>Front-end Skills</h4>
-                    <p>Designing clean interfaces with HTML, CSS, and JavaScript to create responsive user experiences.</p>
+                    <p>Designing clean, accessible interfaces with HTML, CSS, and JavaScript to create responsive user experiences across all devices.</p>
                 </article>
                 <article class="info-card">
+                    <div class="card-icon">📈</div>
                     <h4>Project Growth</h4>
-                    <p>Improving my projects with better structure, usability, and interactive elements over time.</p>
+                    <p>Improving my projects with better structure, usability, telemetry metrics, and interactive elements over time.</p>
                 </article>
             </section>
 
+            <!-- Interactive Skills Matrix -->
+            <section id="skills" class="skills-section">
+                <div class="section-heading">
+                    <span class="eyebrow">Technical Competencies</span>
+                    <h3>Skills &amp; Technologies</h3>
+                    <p>Filter through the tools and technologies I utilize across cloud, DevOps, and web engineering.</p>
+                </div>
+
+                <div class="skills-filter-row">
+                    <button class="filter-btn active" data-filter="all">All Skills</button>
+                    <button class="filter-btn" data-filter="cloud">Cloud &amp; Azure</button>
+                    <button class="filter-btn" data-filter="devops">DevOps &amp; CI/CD</button>
+                    <button class="filter-btn" data-filter="web">Web &amp; Frontend</button>
+                </div>
+
+                <div class="skills-grid" id="skillsGrid">
+                    <div class="skill-card" data-category="cloud">
+                        <div class="skill-header">
+                            <span class="skill-name">Azure Static Web Apps</span>
+                            <span class="skill-level">Proficient</span>
+                        </div>
+                        <div class="skill-meter"><div class="skill-meter-fill" style="width: 90%"></div></div>
+                        <p class="skill-desc">Automated deployments from GitHub, custom domains, SSL configuration, and CDN routing.</p>
+                    </div>
+
+                    <div class="skill-card" data-category="cloud">
+                        <div class="skill-header">
+                            <span class="skill-name">Azure Blob Storage &amp; CDN</span>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                        <div class="skill-meter"><div class="skill-meter-fill" style="width: 85%"></div></div>
+                        <p class="skill-desc">Managing object storage containers, lifecycle rules, access keys, and SAS security tokens.</p>
+                    </div>
+
+                    <div class="skill-card" data-category="cloud">
+                        <div class="skill-header">
+                            <span class="skill-name">Virtual Machines &amp; VNet</span>
+                            <span class="skill-level">Intermediate</span>
+                        </div>
+                        <div class="skill-meter"><div class="skill-meter-fill" style="width: 75%"></div></div>
+                        <p class="skill-desc">Configuring virtual networks, NSGs, subnetting, and Linux virtual machine instances.</p>
+                    </div>
+
+                    <div class="skill-card" data-category="devops">
+                        <div class="skill-header">
+                            <span class="skill-name">GitHub Actions &amp; CI/CD</span>
+                            <span class="skill-level">Proficient</span>
+                        </div>
+                        <div class="skill-meter"><div class="skill-meter-fill" style="width: 88%"></div></div>
+                        <p class="skill-desc">Creating YAML workflow pipelines, automated testing, branch protection, and zero-downtime releases.</p>
+                    </div>
+
+                    <div class="skill-card" data-category="devops">
+                        <div class="skill-header">
+                            <span class="skill-name">Git Version Control</span>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                        <div class="skill-meter"><div class="skill-meter-fill" style="width: 92%"></div></div>
+                        <p class="skill-desc">Branching workflows, pull requests, merge conflict resolution, commit hygiene, and tagging.</p>
+                    </div>
+
+                    <div class="skill-card" data-category="devops">
+                        <div class="skill-header">
+                            <span class="skill-name">Linux &amp; Azure CLI</span>
+                            <span class="skill-level">Intermediate</span>
+                        </div>
+                        <div class="skill-meter"><div class="skill-meter-fill" style="width: 78%"></div></div>
+                        <p class="skill-desc">Bash scripting, file permissions, remote SSH administration, and `az` resource queries.</p>
+                    </div>
+
+                    <div class="skill-card" data-category="web">
+                        <div class="skill-header">
+                            <span class="skill-name">HTML5 &amp; Semantic Web</span>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                        <div class="skill-meter"><div class="skill-meter-fill" style="width: 95%"></div></div>
+                        <p class="skill-desc">Accessible semantics (a11y), SEO optimization, responsive layout structure, and meta tags.</p>
+                    </div>
+
+                    <div class="skill-card" data-category="web">
+                        <div class="skill-header">
+                            <span class="skill-name">Modern CSS &amp; Glassmorphism</span>
+                            <span class="skill-level">Advanced</span>
+                        </div>
+                        <div class="skill-meter"><div class="skill-meter-fill" style="width: 90%"></div></div>
+                        <p class="skill-desc">CSS Grid, Flexbox, custom properties, dark mode theming, and backdrop-filter glass styling.</p>
+                    </div>
+
+                    <div class="skill-card" data-category="web">
+                        <div class="skill-header">
+                            <span class="skill-name">Modern JavaScript (ES6+)</span>
+                            <span class="skill-level">Proficient</span>
+                        </div>
+                        <div class="skill-meter"><div class="skill-meter-fill" style="width: 82%"></div></div>
+                        <p class="skill-desc">DOM manipulation, asynchronous fetch APIs, localStorage caching, event delegation, and state handling.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects Showcase Section -->
+            <section id="projects" class="projects-section">
+                <div class="section-heading">
+                    <span class="eyebrow">Portfolio Showcase</span>
+                    <h3>Cloud Projects &amp; Lab Work</h3>
+                    <p>Practical architectures and applications built during my Cloud Computing Diploma.</p>
+                </div>
+
+                <div class="projects-filter-row">
+                    <button class="project-filter-btn active" data-pfilter="all">All Projects</button>
+                    <button class="project-filter-btn" data-pfilter="cloud">Cloud Architecture</button>
+                    <button class="project-filter-btn" data-pfilter="devops">CI/CD &amp; DevOps</button>
+                    <button class="project-filter-btn" data-pfilter="web">Web Applications</button>
+                </div>
+
+                <div class="projects-grid" id="projectsGrid">
+                    <!-- Project 1 -->
+                    <article class="project-card" data-category="cloud web">
+                        <div class="project-badge">Live Production</div>
+                        <div class="project-icon-top">☁️</div>
+                        <h4>Azure Static Portfolio Webapp</h4>
+                        <p class="project-summary">High-performance static portfolio hosted globally on Azure Static Web Apps with automated GitHub Actions continuous delivery.</p>
+                        <div class="project-tags">
+                            <span>Azure SWA</span>
+                            <span>GitHub Actions</span>
+                            <span>HTML5/CSS3</span>
+                            <span>Vanilla JS</span>
+                        </div>
+                        <div class="project-actions">
+                            <button class="btn-sm secondary view-project-btn" data-id="p1">Architecture Details</button>
+                            <a href="#home" class="btn-sm">Current Page</a>
+                        </div>
+                    </article>
+
+                    <!-- Project 2 -->
+                    <article class="project-card" data-category="cloud devops">
+                        <div class="project-badge">Diploma Lab</div>
+                        <div class="project-icon-top">🔄</div>
+                        <h4>Automated CI/CD Deployment Pipeline</h4>
+                        <p class="project-summary">End-to-end continuous integration and deployment pipeline that lints, builds, tests, and deploys static artifacts into Azure storage upon git push.</p>
+                        <div class="project-tags">
+                            <span>GitHub Actions</span>
+                            <span>Azure CLI</span>
+                            <span>YAML</span>
+                            <span>DevOps</span>
+                        </div>
+                        <div class="project-actions">
+                            <button class="btn-sm secondary view-project-btn" data-id="p2">Architecture Details</button>
+                            <button class="btn-sm view-project-btn" data-id="p2">View Specs</button>
+                        </div>
+                    </article>
+
+                    <!-- Project 3 -->
+                    <article class="project-card" data-category="cloud">
+                        <div class="project-badge">Cloud Lab</div>
+                        <div class="project-icon-top">🗄️</div>
+                        <h4>Azure Secure Blob Asset Store</h4>
+                        <p class="project-summary">Resilient object storage architecture featuring Shared Access Signatures (SAS) token generation, private container security, and Azure CDN distribution.</p>
+                        <div class="project-tags">
+                            <span>Azure Blob</span>
+                            <span>Azure CDN</span>
+                            <span>SAS Security</span>
+                            <span>Storage API</span>
+                        </div>
+                        <div class="project-actions">
+                            <button class="btn-sm secondary view-project-btn" data-id="p3">Architecture Details</button>
+                            <button class="btn-sm view-project-btn" data-id="p3">View Specs</button>
+                        </div>
+                    </article>
+
+                    <!-- Project 4 -->
+                    <article class="project-card" data-category="web cloud">
+                        <div class="project-badge">Interactive Tool</div>
+                        <div class="project-icon-top">⚡</div>
+                        <h4>Serverless Cloud Latency &amp; Shell Simulator</h4>
+                        <p class="project-summary">Client-side cloud utility providing simulated latency diagnostics, interactive terminal commands, and real-time cloud resource calculations.</p>
+                        <div class="project-tags">
+                            <span>JavaScript ES6</span>
+                            <span>Async Ping</span>
+                            <span>CSS Glassmorphism</span>
+                            <span>CLI Shell</span>
+                        </div>
+                        <div class="project-actions">
+                            <button class="btn-sm secondary view-project-btn" data-id="p4">Architecture Details</button>
+                            <a href="#terminal" class="btn-sm">Try Shell</a>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- Interactive Cloud Cost & Resource Estimator Lab -->
+            <section id="cloud-lab" class="cloud-lab-section">
+                <div class="section-heading">
+                    <span class="eyebrow">Interactive Simulator</span>
+                    <h3>Azure Cloud Resource &amp; Cost Calculator</h3>
+                    <p>Experiment with cloud infrastructure parameters to estimate monthly running costs and learn Azure pricing tiers.</p>
+                </div>
+
+                <div class="calculator-panel">
+                    <div class="calculator-controls">
+                        <div class="calc-group">
+                            <label for="cloudTierSelect">Hosting &amp; Compute Tier:</label>
+                            <select id="cloudTierSelect" class="calc-select">
+                                <option value="free" data-base="0">Azure Static Web Apps (Free Tier) - $0.00 / mo</option>
+                                <option value="standard" data-base="9">Azure Static Web Apps (Standard) - $9.00 / mo</option>
+                                <option value="appservice-b1" data-base="13">Azure App Service (Basic B1) - $13.00 / mo</option>
+                                <option value="appservice-s1" data-base="45">Azure App Service (Standard S1) - $45.00 / mo</option>
+                            </select>
+                            <span class="calc-hint" id="tierDescription">Ideal for personal portfolios, student projects, and proof-of-concept static web applications.</span>
+                        </div>
+
+                        <div class="calc-group">
+                            <div class="calc-slider-header">
+                                <label for="storageSlider">Blob Storage Volume:</label>
+                                <span id="storageValue" class="slider-val">25 GB</span>
+                            </div>
+                            <input type="range" id="storageSlider" min="1" max="200" value="25" class="calc-slider">
+                            <span class="calc-subhint">Hot Tier Storage @ ~$0.02 / GB / month</span>
+                        </div>
+
+                        <div class="calc-group">
+                            <div class="calc-slider-header">
+                                <label for="bandwidthSlider">Outbound Bandwidth / Egress:</label>
+                                <span id="bandwidthValue" class="slider-val">50 GB</span>
+                            </div>
+                            <input type="range" id="bandwidthSlider" min="5" max="500" value="50" class="calc-slider">
+                            <span class="calc-subhint">First 100 GB/mo free on Azure SWA; then ~$0.08 / GB</span>
+                        </div>
+
+                        <div class="calc-group">
+                            <div class="calc-slider-header">
+                                <label for="trafficSlider">Monthly Page Impressions:</label>
+                                <span id="trafficValue" class="slider-val">20,000 requests</span>
+                            </div>
+                            <input type="range" id="trafficSlider" min="1000" max="200000" step="5000" value="20000" class="calc-slider">
+                        </div>
+                    </div>
+
+                    <div class="calculator-summary">
+                        <h4>Cost Estimation Breakdown</h4>
+                        <div class="cost-display">
+                            <span class="cost-currency">$</span>
+                            <span id="totalMonthlyCost" class="cost-amount">0.50</span>
+                            <span class="cost-period">/ month</span>
+                        </div>
+
+                        <ul class="cost-breakdown-list">
+                            <li>
+                                <span>Compute / App Tier:</span>
+                                <strong id="costCompute">$0.00</strong>
+                            </li>
+                            <li>
+                                <span>Storage (Hot LRS):</span>
+                                <strong id="costStorage">$0.50</strong>
+                            </li>
+                            <li>
+                                <span>Bandwidth Transfer:</span>
+                                <strong id="costBandwidth">$0.00</strong>
+                            </li>
+                            <li>
+                                <span>Custom Domain &amp; SSL:</span>
+                                <strong class="text-free">FREE ($0.00)</strong>
+                            </li>
+                        </ul>
+
+                        <div class="cost-tip">
+                            <strong>💡 Student Tip:</strong> Azure Static Web Apps Free tier includes free managed SSL certificates, global CDN caching, and 100 GB bandwidth, making it 100% cost-effective for portfolio hosting!
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Interactive Cloud Terminal / Shell Simulator -->
+            <section id="terminal" class="terminal-section">
+                <div class="section-heading">
+                    <span class="eyebrow">Hands-On CLI</span>
+                    <h3>Interactive Cloud Shell Simulator</h3>
+                    <p>Test simulated Azure CLI and Linux commands directly in the browser.</p>
+                </div>
+
+                <div class="terminal-window">
+                    <div class="terminal-bar">
+                        <div class="terminal-dots">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                        </div>
+                        <div class="terminal-title">pasindu@azure-cloud-shell:~ (bash)</div>
+                        <button id="clearTerminalBtn" class="terminal-action-btn">Clear</button>
+                    </div>
+
+                    <div class="terminal-body" id="terminalOutput">
+                        <div class="term-line welcome-line">Azure Cloud Shell (Simulated) [Version 2.50.0]</div>
+                        <div class="term-line">Type <span class="term-cmd">help</span> to view available commands or click the shortcuts below.</div>
+                        <div class="term-line">Type <span class="term-cmd">az webapp list</span> to inspect deployed cloud services.</div>
+                        <div class="term-line"><br></div>
+                    </div>
+
+                    <div class="terminal-prompt-row">
+                        <span class="prompt-symbol">pasindu@azure:~$</span>
+                        <input type="text" id="terminalInput" class="terminal-input" placeholder="type a command, e.g. 'help', 'skills', 'uptime', 'az status'..." autocomplete="off" spellcheck="false">
+                    </div>
+                </div>
+
+                <div class="terminal-shortcuts">
+                    <span class="shortcuts-label">Quick Commands:</span>
+                    <button class="term-pill-btn" data-cmd="help">help</button>
+                    <button class="term-pill-btn" data-cmd="az webapp list">az webapp list</button>
+                    <button class="term-pill-btn" data-cmd="skills">skills</button>
+                    <button class="term-pill-btn" data-cmd="projects">projects</button>
+                    <button class="term-pill-btn" data-cmd="uptime">uptime</button>
+                    <button class="term-pill-btn" data-cmd="whoami">whoami</button>
+                    <button class="term-pill-btn" data-cmd="theme toggle">theme toggle</button>
+                    <button class="term-pill-btn" data-cmd="clear">clear</button>
+                </div>
+            </section>
+
+            <!-- Cloud Knowledge Quiz -->
+            <section id="quiz" class="quiz-section">
+                <div class="section-heading">
+                    <span class="eyebrow">Test Your Knowledge</span>
+                    <h3>Diploma Cloud Computing Quiz</h3>
+                    <p>Challenge yourself with key questions on cloud models, Azure architecture, and web delivery.</p>
+                </div>
+
+                <div class="quiz-container">
+                    <div class="quiz-header">
+                        <span id="quizQuestionCount">Question 1 of 5</span>
+                        <span id="quizScore">Score: 0</span>
+                    </div>
+
+                    <div class="quiz-progress-bar">
+                        <div id="quizProgressBarFill" class="quiz-progress-fill" style="width: 20%"></div>
+                    </div>
+
+                    <div class="quiz-card" id="quizCard">
+                        <h4 id="quizQuestionText" class="quiz-question">Loading question...</h4>
+                        <div class="quiz-options" id="quizOptions"></div>
+                        <div id="quizFeedback" class="quiz-feedback hidden"></div>
+                    </div>
+
+                    <div class="quiz-footer">
+                        <button id="nextQuestionBtn" class="secondary-btn" style="display: none;">Next Question →</button>
+                        <button id="restartQuizBtn" class="ghost-btn" style="display: none;">Restart Quiz</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Daily Inspiration / Quote Panel -->
             <section class="quote-panel">
+                <div class="quote-badge">Thought of the Day</div>
                 <h3>Daily Inspiration</h3>
                 <p id="quoteOutput">“The best way to predict the future is to build it.”</p>
-                <button id="quoteBtn">New Quote</button>
+                <div class="quote-author" id="quoteAuthor">- Peter Drucker</div>
+                <div class="quote-actions">
+                    <button id="quoteBtn">New Quote</button>
+                    <button id="copyQuoteBtn" class="secondary-btn">📋 Copy Quote</button>
+                </div>
             </section>
 
+            <!-- Contact Section -->
             <section id="contact" class="contact-section">
-                <h3>Contact</h3>
-                <p>Email: pasindu@example.com</p>
-                <a href="mailto:pasindu@example.com">Email Me</a>
+                <div class="section-heading">
+                    <span class="eyebrow">Let's Connect</span>
+                    <h3>Contact &amp; Collaboration</h3>
+                    <p>Have questions about my diploma projects or want to discuss cloud opportunities? Reach out below!</p>
+                </div>
+
+                <div class="contact-wrapper">
+                    <div class="contact-info-cards">
+                        <div class="contact-item-card">
+                            <div class="contact-icon">📧</div>
+                            <div>
+                                <h4>Email</h4>
+                                <a href="mailto:pasindu@example.com">pasindu@example.com</a>
+                            </div>
+                        </div>
+                        <div class="contact-item-card">
+                            <div class="contact-icon">📍</div>
+                            <div>
+                                <h4>Location &amp; University</h4>
+                                <p>Colombo, Sri Lanka • Cloud Computing Diploma</p>
+                            </div>
+                        </div>
+                        <div class="contact-item-card">
+                            <div class="contact-icon">🌐</div>
+                            <div>
+                                <h4>Professional Networks</h4>
+                                <div class="social-links-row">
+                                    <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-chip">GitHub ↗</a>
+                                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-chip">LinkedIn ↗</a>
+                                    <a href="https://azure.microsoft.com" target="_blank" rel="noopener noreferrer" class="social-chip">Azure Portal ↗</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form id="contactForm" class="contact-form" novalidate>
+                        <h4>Send a Message</h4>
+                        <div class="form-group">
+                            <label for="contactName">Your Name:</label>
+                            <input type="text" id="contactName" required placeholder="e.g. Alex Smith" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="contactEmail">Your Email:</label>
+                            <input type="email" id="contactEmail" required placeholder="e.g. alex@example.com" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="contactSubject">Inquiry Topic:</label>
+                            <select id="contactSubject" class="form-input">
+                                <option value="Diploma Project Inquiry">Diploma Project Discussion</option>
+                                <option value="Cloud Architecture Question">Cloud Architecture &amp; Azure</option>
+                                <option value="Collaboration Opportunity">Collaboration / Networking</option>
+                                <option value="General Feedback">General Feedback</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-label-row">
+                                <label for="contactMessage">Message:</label>
+                                <span id="charCount" class="char-count">0 / 500</span>
+                            </div>
+                            <textarea id="contactMessage" rows="4" maxlength="500" required placeholder="Write your message here..." class="form-input"></textarea>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" id="submitContactBtn" class="submit-btn">Send Message (Mailto)</button>
+                            <button type="button" id="copyMessageBtn" class="secondary-btn">Copy Text</button>
+                        </div>
+                        <div id="formStatus" class="form-status" aria-live="polite"></div>
+                    </form>
+                </div>
             </section>
         </main>
+
+        <!-- Project Details Modal -->
+        <div id="projectModal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+            <div class="modal-dialog">
+                <button id="modalCloseBtn" class="modal-close" aria-label="Close dialog">&times;</button>
+                <div class="modal-header">
+                    <span id="modalCategory" class="project-badge">Category</span>
+                    <h3 id="modalTitle">Project Title</h3>
+                </div>
+                <div class="modal-body" id="modalBody">
+                    <!-- Dynamic details inserted here -->
+                </div>
+                <div class="modal-footer">
+                    <button id="modalDismissBtn" class="secondary-btn">Close</button>
+                    <a id="modalActionLink" href="#contact" class="btn-sm">Discuss Project</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Floating Back To Top Button -->
+        <button id="backToTop" class="back-to-top" title="Back to top of page" aria-label="Scroll back to top">
+            ↑
+        </button>
+
+        <!-- Toast Notifications Container -->
+        <div id="toastContainer" class="toast-container" aria-live="polite"></div>
+
+        <footer class="site-footer">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <p><strong>Pasindu Perera</strong> • Diploma Cloud Computing Project</p>
+                    <p class="footer-sub">Optimized for Azure Static Web Apps • Fast, Secure &amp; Carbon Efficient</p>
+                </div>
+                <div class="footer-right">
+                    <a href="#home">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#skills">Skills</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#terminal">Shell</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; <span id="currentYear">2026</span> Pasindu Perera. Crafted with modern web standards.
+            </div>
+        </footer>
 
         <script src="script.js"></script>
     </body>
