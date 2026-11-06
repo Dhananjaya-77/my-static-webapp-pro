@@ -151,9 +151,9 @@ function initTelemetry() {
     // Visitor Count Simulator (persisted in localStorage)
     const visitorCountEl = document.getElementById('visitorCount');
     if (visitorCountEl) {
-        let visits = parseInt(localStorage.getItem('pasindu_portfolio_visits') || '142', 10);
+        let visits = parseInt(localStorage.getItem('hasitha_portfolio_visits') || '142', 10);
         visits += 1;
-        localStorage.setItem('pasindu_portfolio_visits', visits.toString());
+        localStorage.setItem('hasitha_portfolio_visits', visits.toString());
         visitorCountEl.textContent = `${visits.toLocaleString()} Visits`;
     }
 
@@ -481,7 +481,7 @@ function initTerminal() {
         commandHistory.push(cmd);
         historyIndex = commandHistory.length;
 
-        appendLine(`<span class="prompt-symbol">pasindu@azure:~$</span> ${cmd}`);
+        appendLine(`<span class="prompt-symbol">hasitha@azure:~$</span> ${cmd}`);
 
         const lower = cmd.toLowerCase();
 
@@ -501,12 +501,12 @@ function initTerminal() {
         } else if (lower === 'az webapp list' || lower === 'az webapp show') {
             appendLine('<span class="term-success">[</span>');
             appendLine('  {');
-            appendLine('    "name": "pasindu-static-webapp",');
+            appendLine('    "name": "hasitha-static-webapp",');
             appendLine('    "resourceGroup": "rg-diploma-cloud",');
             appendLine('    "location": "East US 2 (Azure Edge CDN)",');
             appendLine('    "sku": "Free_F1",');
             appendLine('    "state": "Running",');
-            appendLine('    "customDomains": ["pasinduperera.dev"],');
+            appendLine('    "customDomains": ["hasithadhananjaya.dev"],');
             appendLine('    "sslStatus": "ManagedCertificate_Enabled"');
             appendLine('  }');
             appendLine('<span class="term-success">]</span>');
@@ -530,7 +530,7 @@ function initTerminal() {
             appendLine(`System Uptime: 99.99% SLA • Server Timestamp: ${now.toISOString()}`);
             appendLine(`Session Health: OK (HTTP 200) • Global CDN Latency: Active`);
         } else if (lower === 'whoami') {
-            appendLine('User: Pasindu Perera');
+            appendLine('User: Hasitha Dhananjaya');
             appendLine('Role: Cloud Computing Diploma Student & Developer');
             appendLine('Interests: Cloud Architecture, Azure, CI/CD Automation, Front-End UI');
         } else if (lower.startsWith('theme')) {
@@ -540,7 +540,7 @@ function initTerminal() {
             changeQuote();
             appendLine(`<span class="term-warn">${quoteOutput.textContent}</span> ${quoteAuthor.textContent}`);
         } else if (lower === 'contact') {
-            appendLine('Email: <span class="term-cmd">pasindu@example.com</span>');
+            appendLine('Email: <span class="term-cmd">hasithadhananjaya@example.com</span>');
             appendLine('Location: Colombo, Sri Lanka');
             appendLine('GitHub: https://github.com • LinkedIn: https://linkedin.com');
         } else if (lower === 'clear') {
@@ -785,7 +785,7 @@ function initContactForm() {
             const subject = subjectSelect ? subjectSelect.value : 'Inquiry';
             const message = messageInput.value.trim() || 'No message entered';
 
-            const formatted = `To: Pasindu Perera\nFrom: ${name} (${email})\nSubject: ${subject}\n\nMessage:\n${message}`;
+            const formatted = `To: Hasitha Dhananjaya\nFrom: ${name} (${email})\nSubject: ${subject}\n\nMessage:\n${message}`;
 
             navigator.clipboard.writeText(formatted).then(() => {
                 showToast('Message formatted & copied to clipboard!');
@@ -821,7 +821,7 @@ function initContactForm() {
             }
 
             // Construct mailto link
-            const mailtoUri = `mailto:pasindu@example.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Hi Pasindu,\n\nName: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
+            const mailtoUri = `mailto:hasithadhananjaya@example.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Hi Hasitha,\n\nName: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
 
             if (formStatus) {
                 formStatus.className = 'form-status success';
